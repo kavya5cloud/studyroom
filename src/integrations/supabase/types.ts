@@ -14,7 +14,80 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      room_participants: {
+        Row: {
+          id: string
+          is_online: boolean | null
+          joined_at: string
+          last_seen: string
+          room_id: string
+          user_id: string | null
+          username: string
+        }
+        Insert: {
+          id?: string
+          is_online?: boolean | null
+          joined_at?: string
+          last_seen?: string
+          room_id: string
+          user_id?: string | null
+          username: string
+        }
+        Update: {
+          id?: string
+          is_online?: boolean | null
+          joined_at?: string
+          last_seen?: string
+          room_id?: string
+          user_id?: string | null
+          username?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "room_participants_room_id_fkey"
+            columns: ["room_id"]
+            isOneToOne: false
+            referencedRelation: "study_rooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      study_rooms: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          name: string
+          selected_duration: number | null
+          sessions_completed: number | null
+          time_left: number | null
+          timer_state: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name: string
+          selected_duration?: number | null
+          sessions_completed?: number | null
+          time_left?: number | null
+          timer_state?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name?: string
+          selected_duration?: number | null
+          sessions_completed?: number | null
+          time_left?: number | null
+          timer_state?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
