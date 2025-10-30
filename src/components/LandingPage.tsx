@@ -3,10 +3,11 @@ import { Volume2, ChevronRight } from "lucide-react";
 import characterBanner from "@/assets/character-banner.png";
 
 interface LandingPageProps {
-  onStart: () => void;
+  onStartSolo: () => void;
+  onStartMultiplayer: () => void;
 }
 
-export const LandingPage = ({ onStart }: LandingPageProps) => {
+export const LandingPage = ({ onStartSolo, onStartMultiplayer }: LandingPageProps) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#8B6F47] to-[#5C4A3A] p-4">
       <div className="relative w-full max-w-4xl">
@@ -63,15 +64,23 @@ export const LandingPage = ({ onStart }: LandingPageProps) => {
               </div>
             </div>
 
-            {/* Start button */}
-            <div className="text-center">
+            {/* Start buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 variant="vintage" 
                 size="xl"
-                onClick={onStart}
+                onClick={onStartSolo}
                 className="font-bold italic font-playfair"
               >
-                Click anywhere to begin
+                Solo Study
+              </Button>
+              <Button 
+                variant="vintage" 
+                size="xl"
+                onClick={onStartMultiplayer}
+                className="font-bold italic font-playfair bg-accent hover:bg-accent/90"
+              >
+                Study Together
               </Button>
             </div>
           </div>
